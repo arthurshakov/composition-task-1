@@ -1,0 +1,22 @@
+.game {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: 40px;
+  padding-top: 100px;
+  width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.reset-button {
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 26px;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  cursor: pointer;
+  background-color: darkgreen;
+  color: white;
+}

@@ -1,0 +1,50 @@
+.field {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  border: 1px solid currentColor;
+  aspect-ratio: 1;
+  font-size: 40px;
+}
+
+.cell:first-child {
+  border-top: none;
+  border-left: none;
+}
+
+.cell:nth-child(2) {
+  border-top: none;
+}
+
+.cell:nth-child(3) {
+  border-top: none;
+  border-right: none;
+}
+
+.cell:nth-child(4) {
+  border-left: none;
+}
+
+.cell:nth-child(6) {
+  border-right: none;
+}
+
+.cell:nth-child(7) {
+  border-left: none;
+  border-bottom: none;
+}
+
+.cell:nth-child(8) {
+  border-bottom: none;
+}
+
+.cell:nth-child(9) {
+  border-right: none;
+  border-bottom: none;
+}

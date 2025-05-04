@@ -1,0 +1,72 @@
+[
+	{
+		"id": "7",
+		"content": "7",
+    "type": "operand"
+	},
+	{
+		"id": "8",
+		"content": "8",
+    "type": "operand"
+	},
+	{
+		"id": "9",
+		"content": "9",
+    "type": "operand"
+	},
+	{
+		"id": "4",
+		"content": "4",
+    "type": "operand"
+	},
+	{
+		"id": "5",
+		"content": "5",
+    "type": "operand"
+	},
+	{
+		"id": "6",
+		"content": "6",
+    "type": "operand"
+	},
+	{
+		"id": "1",
+		"content": "1",
+    "type": "operand"
+	},
+	{
+		"id": "2",
+		"content": "2",
+    "type": "operand"
+	},
+	{
+		"id": "3",
+		"content": "3",
+    "type": "operand"
+	},
+	{
+		"id": "0",
+		"content": "0",
+    "type": "operand"
+	},
+	{
+		"id": "-",
+		"content": "-",
+    "type": "operator"
+	},
+	{
+		"id": "+",
+		"content": "+",
+    "type": "operator"
+	},
+	{
+		"id": "=",
+		"content": "=",
+    "type": "result"
+	},
+	{
+		"id": "C",
+		"content": "C",
+    "type": "reset"
+	}
+]
