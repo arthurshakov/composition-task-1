@@ -9,16 +9,8 @@ const InformationLayout = ({ message }) => {
 	)
 }
 
-export const InformationContainer = ({ isDraw, isGameEnded, currentPlayer }) => {
-	let message = `Ходит: ${currentPlayer}`;
-	// const [message, setMessage] = useState(`Ходит: ${currentPlayer}`);
-
-	if (isDraw) {
-		message = 'Ничья';
-	} else if (isGameEnded) {
-		message = `Победа: ${currentPlayer}`;
-	}
-
+// export const InformationContainer = ({ isDraw, isGameEnded, currentPlayer }) => {
+export const InformationContainer = ({ message }) => {
 	return <InformationLayout message={ message } />
 }
 
@@ -27,7 +19,5 @@ InformationLayout.propTypes = {
 };
 
 InformationContainer.propTypes = {
-	isDraw: PropTypes.bool,
-	isGameEnded: PropTypes.bool,
-	currentPlayer: PropTypes.string,
+	message: PropTypes.string,
 };

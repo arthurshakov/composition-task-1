@@ -4,24 +4,12 @@ import styles from './game.module.css';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-export const GameLayout = ({field, setField, isDraw, setIsDraw, isGameEnded, setIsGameEnded, currentPlayer, setCurrentPlayer, reset}) => {
+export const GameLayout = ({field, handleCellClick, message, reset}) => {
   return (
     <div className={ styles.game }>
-      <InformationContainer
-        isDraw={ isDraw }
-        isGameEnded={ isGameEnded }
-        currentPlayer={ currentPlayer }
-      />
+      <InformationContainer message= { message } />
 
-      <FieldContainer
-        field={ field }
-        setField={ setField }
-        setIsDraw={ setIsDraw }
-        isGameEnded={ isGameEnded }
-        setIsGameEnded={ setIsGameEnded }
-        currentPlayer={ currentPlayer }
-        setCurrentPlayer={ setCurrentPlayer }
-      />
+      <FieldContainer field={ field } handleCellClick = { handleCellClick } />
 
       <button className={ styles['reset-button'] } onClick={ reset }>начать заново</button>
     </div>
@@ -35,10 +23,24 @@ export const GameContainer = () => {
     '', '', '',
   ];
 
+  const WIN_PATTERNS = [
+		[0, 1, 2], [3, 4, 5], [6, 7, 8], // Варианты побед по горизонтали
+		[0, 3, 6], [1, 4, 7], [2, 5, 8], // Варианты побед по вертикали
+		[0, 4, 8], [2, 4, 6] // Варианты побед по диагонали
+	];
+
   const [field, setField] = useState(initialField);
   const [currentPlayer, setCurrentPlayer] = useState('X');
   const [isGameEnded, setIsGameEnded] = useState(false);
   const [isDraw, setIsDraw] = useState(false);
+
+  let message = `Ходит: ${currentPlayer}`;
+
+	if (isDraw) {
+		message = 'Ничья';
+	} else if (isGameEnded) {
+		message = `Победа: ${currentPlayer}`;
+	}
 
   function reset() {
     setField(initialField);
@@ -47,16 +49,33 @@ export const GameContainer = () => {
     setCurrentPlayer('X');
   }
 
+  function checkWinner(currentField, currentPlayer) {
+		return WIN_PATTERNS.some(pattern => {
+			return pattern.every(cellIndex => currentField[cellIndex] === currentPlayer);
+		});
+	}
+
+	function handleCellClick(index) {
+		if (!isGameEnded && field[index] === '') {
+			const newField = field.map((cell, prevFieldIndex) => index === prevFieldIndex ? currentPlayer : cell);
+
+			setField(newField);
+
+			if (checkWinner(newField, currentPlayer)) {
+				setIsGameEnded(true);
+			} else if (newField.every(cell => cell !== '')) {
+				setIsDraw(true);
+			}else {
+				setCurrentPlayer(currentPlayer === 'X' ? '0' : 'X');
+			}
+		}
+	}
+
   return (
     <GameLayout
       field={ field }
-      setField={ setField }
-      isDraw={ isDraw }
-      setIsDraw={ setIsDraw }
-      isGameEnded={ isGameEnded }
-      setIsGameEnded = { setIsGameEnded }
-      currentPlayer={ currentPlayer }
-      setCurrentPlayer={ setCurrentPlayer }
+      handleCellClick = { handleCellClick }
+      message = { message }
       reset= { reset }
     />
   )
@@ -64,16 +83,7 @@ export const GameContainer = () => {
 
 GameLayout.propTypes = {
   field: PropTypes.array,
-  setField: PropTypes.func,
-
-  isDraw: PropTypes.bool,
-  setIsDraw: PropTypes.func,
-
-  isGameEnded: PropTypes.bool,
-  setIsGameEnded: PropTypes.func,
-
-  currentPlayer: PropTypes.string,
-  setCurrentPlayer: PropTypes.func,
-
+  handleCellClick: PropTypes.func,
+  message: PropTypes.string,
   reset: PropTypes.func,
 };
