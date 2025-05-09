@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const FieldLayout = ({field, handleCellClick}) => {
 	return (
 		<div className={ styles.field }>
-			{field.map((cell, index) => <div className={styles.cell} key={ `${Date.now()}-${index}` } onClick={() => handleCellClick(index)}>{ cell }</div>)}
+			{field.map((cell, index) => <div className={styles.cell} key={ index } onClick={() => handleCellClick(index)}>{ cell }</div>)}
 		</div>
 	)
 }
